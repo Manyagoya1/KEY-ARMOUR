@@ -45,15 +45,7 @@
 - Secret vault saves password
 - on Risk Based Clustering passwords are categorized automatically into Low, Medium, High risk based on strength.
 
-## Folder Structure
-securepass360/
-│
-├── icons/           # Folder for extension icons (it has three icons(inside file))
-├── background.js    # Background script
-├── cc               # web dashboard
-├── content.js       # Content script
-├── main.js          # Main script for extension logic
-├── manifest.json    # Manifest file for Chrome extension
-├── popup.html       # Popup HTML file
-├── popup.js         # Popup JS file
-├── style.css        # CSS styles for popup or extension
+## SreenShots
+<img width="310" height="167" alt="image" src="https://github.com/user-attachments/assets/614bfe88-e992-4e4b-812c-2ec94f6dcbcf" />
+<img width="310" height="167" alt="image" src="https://github.com/user-attachments/assets/614bfe88-e992-4e4b-812c-2ec94f6dcbcf" />
+
