@@ -46,10 +46,10 @@
 - on Risk Based Clustering passwords are categorized automatically into Low, Medium, High risk based on strength.
 
 ## Folder Structure
-- securepass360/
-- │
-- ├── icons/ 
-- ├──   icons16.png
+securepass360/
+│
+├── icons/ 
+  ├──   icons16.png
   ├──   icons48.png
   ├──   icons128.png
 ├── background.js    
