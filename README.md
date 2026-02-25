@@ -34,7 +34,7 @@
 
 5)Extension should appear in your Chrome toolbar
 
-##Usage
+## Usage
 - Install the Chrome Extension.
 - Add passwords to the extension.
 - Check the web dashboard to see overall security and manage saved passwords.
@@ -45,11 +45,11 @@
 - Secret vault saves password
 - on Risk Based Clustering passwords are categorized automatically into Low, Medium, High risk based on strength.
 
-##folder structure
-securepass360/
-│
-├── icons/ 
-  ├──   icons16.png
+## Folder Structure
+- securepass360/
+- │
+- ├── icons/ 
+- ├──   icons16.png
   ├──   icons48.png
   ├──   icons128.png
 ├── background.js    
