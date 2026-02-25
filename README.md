@@ -45,7 +45,7 @@
 - Secret vault saves password
 - on Risk Based Clustering passwords are categorized automatically into Low, Medium, High risk based on strength.
 
-## SreenShots
+## ScreenShots
 <img width="310" height="167" alt="image" src="https://github.com/user-attachments/assets/614bfe88-e992-4e4b-812c-2ec94f6dcbcf" />
 <img width="938" height="491" alt="image" src="https://github.com/user-attachments/assets/f834a7a7-ed59-4993-bc9f-f307a9e4da10" />
 <img width="942" height="454" alt="image" src="https://github.com/user-attachments/assets/1029e1cf-4644-4c8f-a88a-491448a23016" />
