@@ -48,16 +48,12 @@
 ## Folder Structure
 securepass360/
 │
-├── icons/ 
-  ├──   icons16.png
-  ├──   icons48.png
-  ├──   icons128.png
-├── background.js    
-├── cc
-├── content.js       
-├── main.js          
-├── manifest.json    
-├── popup.html       
-├── popup.js         
-├── style.css        
-
+├── icons/           # Folder for extension icons (it has three icons(inside file))
+├── background.js    # Background script
+├── cc               # web dashboard
+├── content.js       # Content script
+├── main.js          # Main script for extension logic
+├── manifest.json    # Manifest file for Chrome extension
+├── popup.html       # Popup HTML file
+├── popup.js         # Popup JS file
+├── style.css        # CSS styles for popup or extension
