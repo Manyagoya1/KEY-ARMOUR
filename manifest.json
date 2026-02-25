@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "SecurePass360 - Key Armor",
+  "description": "Risk-based password strength analyzer and phishing detection extension.",
+  "version": "1.0",
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "SecurePass360"
+  },
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

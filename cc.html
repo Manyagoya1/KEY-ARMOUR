@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecurePass 360</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    text-align:center;
+}
+
+header{
+    padding:20px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.section{
+    background:#111;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+input,button{
+    padding:10px;
+    margin:10px;
+    border-radius:5px;
+    border:none;
+}
+
+button{
+    background:#1e90ff;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0d6efd;
+}
+
+.deleteBtn{
+    background:red;
+}
+
+.editBtn{
+    background:orange;
+}
+
+.low{color:lime;}
+.medium{color:orange;}
+.high{color:red;}
+
+table{
+    width:100%;
+    margin-top:10px;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:8px;
+    border-bottom:1px solid #444;
+}
+
+footer{
+    margin-top:30px;
+    padding:20px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>🔐 SecurePass 360</header>
+
+<!-- PASSWORD STRENGTH ANALYZER -->
+<div class="section">
+    <h2>Password Strength Analyzer</h2>
+    <input type="password" id="passwordInput" placeholder="Enter Password">
+    <button onclick="checkStrength()">Check Strength</button>
+    <p id="strengthResult"></p>
+</div>
+
+<!-- SECURE VAULT -->
+<div class="section">
+    <h2>Secure Vault</h2>
+    <input type="text" id="softwareName" placeholder="Software Name">
+    <input type="password" id="vaultPassword" placeholder="Password">
+    <button id="addBtn" onclick="addOrUpdateVault()">Add</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Software</th>
+                <th>Password</th>
+                <th>Risk</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="vaultTable"></tbody>
+    </table>
+</div>
+
+<!-- RISK BASED CLUSTERING -->
+<div class="section">
+    <h2>Risk Based Clustering</h2>
+    <p>Passwords are categorized automatically into Low, Medium, High risk based on strength.</p>
+</div>
+
+<footer>© 2026 SecurePass 360</footer>
+
+<script>
+
+let editIndex = null;
+
+// PASSWORD STRENGTH CHECK
+function checkStrength(){
+    let password = document.getElementById("passwordInput").value;
+    let result = document.getElementById("strengthResult");
+
+    let strength = 0;
+    if(password.length >= 8) strength++;
+    if(/[A-Z]/.test(password)) strength++;
+    if(/[0-9]/.test(password)) strength++;
+    if(/[!@#$%^&*]/.test(password)) strength++;
+
+    if(strength <=1){
+        result.innerHTML = "Weak Password";
+        result.style.color="red";
+    }
+    else if(strength<=3){
+        result.innerHTML = "Medium Password";
+        result.style.color="orange";
+    }
+    else{
+        result.innerHTML = "Strong Password";
+        result.style.color="lime";
+    }
+}
+
+// CALCULATE RISK
+function calculateRisk(password){
+    let score=0;
+    if(password.length>=8) score++;
+    if(/[A-Z]/.test(password)) score++;
+    if(/[0-9]/.test(password)) score++;
+    if(/[!@#$%^&*]/.test(password)) score++;
+
+    if(score<=1) return "High";
+    if(score<=3) return "Medium";
+    return "Low";
+}
+
+// ADD OR UPDATE
+function addOrUpdateVault(){
+    let name = document.getElementById("softwareName").value;
+    let pass = document.getElementById("vaultPassword").value;
+
+    if(name=="" || pass==""){
+        alert("Fill all fields");
+        return;
+    }
+
+    let vault = JSON.parse(localStorage.getItem("vault")) || [];
+    let risk = calculateRisk(pass);
+
+    if(editIndex===null){
+        vault.push({name,pass,risk});
+    } else {
+        vault[editIndex] = {name,pass,risk};
+        editIndex=null;
+        document.getElementById("addBtn").innerText="Add";
+    }
+
+    localStorage.setItem("vault",JSON.stringify(vault));
+    clearInputs();
+    displayVault();
+}
+
+// DELETE
+function deleteEntry(index){
+    let vault = JSON.parse(localStorage.getItem("vault")) || [];
+    vault.splice(index,1);
+    localStorage.setItem("vault",JSON.stringify(vault));
+    displayVault();
+}
+
+// EDIT
+function editEntry(index){
+    let vault = JSON.parse(localStorage.getItem("vault")) || [];
+    document.getElementById("softwareName").value = vault[index].name;
+    document.getElementById("vaultPassword").value = vault[index].pass;
+    editIndex=index;
+    document.getElementById("addBtn").innerText="Update";
+}
+
+// DISPLAY VAULT
+function displayVault(){
+    let vault = JSON.parse(localStorage.getItem("vault")) || [];
+    let table = document.getElementById("vaultTable");
+    table.innerHTML="";
+
+    vault.forEach((item,index)=>{
+        let row = `<tr>
+            <td>${item.name}</td>
+            <td>${item.pass}</td>
+            <td class="${item.risk.toLowerCase()}">${item.risk}</td>
+            <td>
+                <button class="editBtn" onclick="editEntry(${index})">Edit</button>
+                <button class="deleteBtn" onclick="deleteEntry(${index})">Delete</button>
+            </td>
+        </tr>`;
+        table.innerHTML += row;
+    });
+}
+
+function clearInputs(){
+    document.getElementById("softwareName").value="";
+    document.getElementById("vaultPassword").value="";
+}
+
+displayVault();
+
+</script>
+
+</body>
+</html>
