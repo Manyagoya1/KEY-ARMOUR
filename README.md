@@ -25,9 +25,13 @@
 
 ## Installation
 1)https://github.com/Manyagoya1/KEY-ARMOUR/edit/main/README.md
+
 2)Open Chrome and go to chrome://extensions/
+
 3)Enable Developer mode (top-right)
+
 4)Click Load unpacked and select the project folder
+
 5)Extension should appear in your Chrome toolbar
 
 ##Usage
